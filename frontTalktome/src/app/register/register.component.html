@@ -1,0 +1,56 @@
+<form (ngSubmit)="register()" [formGroup]="registerForm">
+    <h1>Inscrivez-vous</h1>
+    <div class="username_area">
+      <label for="username">Pseudo</label>
+      <input
+        type="text"
+        class="username"
+        id="username"
+        placeholder="choose your pseudo"
+        formControlName="username"
+      />
+      @if(registerForm.get('username')?.errors?.['required'] &&
+      registerForm.get('username')?.touched){
+      <span>Un pseudo est requis</span>
+      }
+    </div>
+    <div class="passwords_area" formGroupName="passwordGroup">
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        class="password"
+        id="password"
+        placeholder="choose your password"
+        formControlName="password"
+      />
+      @if(registerForm.get('passwordGroup.password')?.errors?.['required'] &&
+      registerForm.get('passwordGroup.password')?.touched){
+      <span>Un mot de passe est requis</span>
+      }
+      <br />
+      <label for="confirm_password">Confirmer votre mot de passe</label>
+      <input
+        type="password"
+        class="confirm_password"
+        id="confirm_password"
+        placeholder="confirm your password"
+        formControlName="confirm_password"
+      />
+      @if(!registerForm.get('passwordGroup.confirm_password')?.valid &&
+      registerForm.get('passwordGroup.confirm_password')?.touched){
+      <span>Un mot de passe est requis</span>
+      } @if(registerForm.get('passwordGroup')?.errors?.['samePass']){
+      <span>Le mot de passe ne correspond pas</span>
+      }
+    </div>
+    <input
+      type="submit"
+      id="submit"
+      value="Validez"
+      [disabled]="!registerForm.valid"
+    />
+  </form>
+  <a (click)="goToLogin()">Sign in</a>
+  
+  {{ registerForm.valid }}
+  

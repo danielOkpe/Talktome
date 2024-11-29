@@ -1,0 +1,21 @@
+<section class="listeUsersconn" id="listeUsersconn">
+    <h1>Connected Users</h1>
+    <!-- @if (users.length == 0) {
+    <div>No users</div>
+    }@else if(users.length > 0) {
+    <div>{{ getAllUsers() }}</div>
+    }-->
+    <h3>ChatGroup !</h3>
+    <!--<button (click)="getAllUsers()">Afficher la liste des utilisateurs</button>-->
+    @for(user of users; track user){
+    <li>
+      {{ user.username }}
+      <!-- Supposons que 'username' soit une propriété de l'objet User -->
+    </li>
+    }
+  </section>
+  
+  <section class="groupchat" (click)="goToGroupChat()">
+    <span> </span>
+  </section>
+  
